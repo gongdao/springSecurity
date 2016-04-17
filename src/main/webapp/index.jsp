@@ -1,9 +1,7 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 
 <html>
 	<head>
@@ -11,7 +9,14 @@
 		<title>Welcome</title>
 	</head> 
 	<body>
-		<c:url value="/showMessage.html" var="messageUrl" />
-		<a href="${messageUrl}">Click to enter</a>
+		Username: <b><sec:authentication property="principal.username"/></b><br/>
+		<br/>
+		<a href="admin">Click to enter admin area.</a>
+		<br>
+		<br/>
+		<form id="form-1" action="Logout" method="post">
+			<input type="submit" value="Logout"/>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token }"/>
+		</form>
 	</body>
 </html>
